@@ -1,4 +1,7 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
+import Section from './components/feedback-widget/Section ';
+import FeedbackOptions from './components/feedback-widget/FeedbackOptions';
+import Statistics from './components/feedback-widget/Statistics ';
 
 class App extends Component {
   state = {
@@ -7,21 +10,11 @@ class App extends Component {
     bad: 0,
   };
 
-  addGood = () => {
-    this.setState(prevState => ({
-      good: prevState.good + 1,
-    }));
-  };
+  addFeedback = event => {
+    const { name } = event.target;
 
-  addNeutral = () => {
     this.setState(prevState => ({
-      neutral: prevState.neutral + 1,
-    }));
-  };
-
-  addBad = () => {
-    this.setState(prevState => ({
-      bad: prevState.bad + 1,
+      [name]: prevState[name] + 1,
     }));
   };
 
@@ -37,22 +30,19 @@ class App extends Component {
     const { good, neutral, bad } = this.state;
 
     return (
-      <div>
-        <h1>Please leave feedback</h1>
-        <button onClick={() => this.addGood()}>Good</button>
-        <button onClick={() => this.addNeutral()}>Neutral</button>
-        <button onClick={() => this.addBad()}>Bad</button>
-        <h2>Statistics</h2>
-        <p>Good: {good}</p>
-        <p>Neutral: {neutral}</p>
-        <p>Bad: {bad}</p>
-        <p>Total feedbacks: {this.countTotalFeedback()}</p>
-        <p>
-          Positive feedbacks:
-          {!isNaN(this.countPositiveFeedbackPercentage()) &&
-            this.countPositiveFeedbackPercentage() + '%'}
-        </p>
-      </div>
+      <Section title={'Please leave feedback'}>
+        <FeedbackOptions
+          options={this.state}
+          onLeaveFeedback={this.addFeedback}
+        />
+        <Statistics
+          good={good}
+          neutral={neutral}
+          bad={bad}
+          total={this.countTotalFeedback()}
+          positivePercentage={this.countPositiveFeedbackPercentage()}
+        />
+      </Section>
     );
   }
 }
