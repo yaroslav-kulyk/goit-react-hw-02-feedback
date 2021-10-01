@@ -30,7 +30,7 @@ class App extends Component {
     const { good, neutral, bad } = this.state;
 
     return (
-      <Section title={'Please leave feedback'}>
+      <Section title={'Please leave a feedback'}>
         <FeedbackOptions
           options={this.state}
           onLeaveFeedback={this.addFeedback}
