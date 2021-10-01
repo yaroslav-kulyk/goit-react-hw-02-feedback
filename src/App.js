@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import React, { Component } from 'react';
 import Section from './components/feedback-widget/Section ';
 import FeedbackOptions from './components/feedback-widget/FeedbackOptions';
 import Statistics from './components/feedback-widget/Statistics ';
