@@ -10,11 +10,9 @@ class App extends Component {
     bad: 0,
   };
 
-  addFeedback = event => {
-    const { name } = event.target;
-
+  addFeedback = feedback => {
     this.setState(prevState => ({
-      [name]: prevState[name] + 1,
+      [feedback]: prevState[feedback] + 1,
     }));
   };
 
@@ -30,7 +28,7 @@ class App extends Component {
     const { good, neutral, bad } = this.state;
 
     return (
-      <Section title={'Please leave a feedback'}>
+      <Section title="Please leave a feedback">
         <FeedbackOptions
           options={this.state}
           onLeaveFeedback={this.addFeedback}

@@ -6,7 +6,11 @@ function FeedbackOptions({ options, onLeaveFeedback }) {
     <div className={s.options}>
       {Object.keys(options).map(option => {
         return (
-          <button key={option} name={option} onClick={onLeaveFeedback}>
+          <button
+            key={option}
+            name={option}
+            onClick={() => onLeaveFeedback(option)}
+          >
             {option}
           </button>
         );
